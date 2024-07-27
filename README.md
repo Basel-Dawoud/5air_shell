@@ -65,12 +65,12 @@ After compiling, you can run the shell using:
    ```
    Or with append mode:
    ```bash
-   5air> cop -a file1.txt file2.txt
+   5air> cop -a text.txt text2.txt
    ```
 
 4. **Move a File**
    ```bash
-   5air> MV file1.txt backup/file1.txt
+   5air> MV /home/vm/Desktop/shellTask/text.txt /home/vm/Desktop/text.txt
    ```
 
 5. **Print Help Information**
