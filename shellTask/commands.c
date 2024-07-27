@@ -41,7 +41,7 @@ void Echo(void) {
 // Copying a file to another
 void cop(int argc, char **argv) {
     if (argc < 3) {
-        fprintf(stderr, "Usage: cp <sourcePath> <targetPath> [-a]\n");
+        fprintf(stderr, "Usage: cop <sourcePath> <targetPath> [-a]\n");
         return;
     }
 
