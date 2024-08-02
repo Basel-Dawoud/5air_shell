@@ -1,4 +1,6 @@
-# Shell Task
+# 5air Shell
+
+Welcome to the 5air Shell project! This is a simple shell implementation written in C that supports built-in commands execution.
 
 This project implements a simple shell with basic command functionalities, including printing the current working directory, echoing strings, copying files, moving files, and providing help information.
 
