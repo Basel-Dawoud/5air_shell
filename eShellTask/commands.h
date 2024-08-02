@@ -25,8 +25,8 @@ int changeDirectory(const char *path);
 // Print all environment variables
 void envir(void);
 
-// Execute an external command
-//void executeExternalCommand(const char *command, char **args);
+// Declaration for the external command execution function
+void executeExternalCommand(const char *command, char **args);
 
 
 // Determine if the command is internal
@@ -36,5 +36,7 @@ int isBuiltinCommand(const char *command);
 // Changing the directory to the target path
 int mycd(const char *path);
 
-#endif // COMMANDS_H
+void type(const char *command);
 
+
+#endif // COMMANDS_H
