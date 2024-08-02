@@ -3,6 +3,9 @@
 #include <string.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+
 
 #define MAX_BUFFER_SIZE 1024
 
@@ -117,8 +120,9 @@ void Help(void) {
     printf("3- cop <sourcePath> <destinationPath> [-a] : Copy a file to another file\n");
     printf("   Use -a option to append to the target file\n");
     printf("4- MV <sourcePath> <destinationPath> : Move a file to another place\n");
-    printf("5- Exit : Print 'Good Bye' and terminate the shell\n");
-    printf("6- Help : Print this help message\n");
+    printf("5- mycd <path> : Change the current working directory to the specified path\n");
+    printf("6- Exit : Print 'Good Bye' and terminate the shell\n");
+    printf("7- Help : Print this help message\n");
 }
 
 // Exit the shell
@@ -130,7 +134,7 @@ void Exit(void) {
 
 // Determine if the command is internal
 int isBuiltinCommand(const char *command) {
-    const char *builtinCommands[] = {"currDir", "Echo", "cop", "MV", "Help", "Exit", "envir", "mycd"};
+    const char *builtinCommands[] = {"currDir", "Echo", "cop", "MV", "Help", "Exit", "envir", "mycd", "type"};
     for (int i = 0; i < sizeof(builtinCommands) / sizeof(builtinCommands[0]); i++) {
         if (strcmp(command, builtinCommands[i]) == 0) {
             return 1; // True, it's a built-in command
@@ -146,4 +150,21 @@ int mycd(const char *path) {
         return -1;
     }
     return 0;
+}
+
+
+// Function to execute an external command
+void executeExternalCommand(const char *command, char **args) {
+    /*Debugging output
+    printf("Executing command: %s\n", command);
+    if (args[0] != NULL) {
+        printf("Arguments:\n");
+        for (int i = 0; args[i] != NULL; ++i) {
+            printf("  args[%d] = %s\n", i, args[i]);
+        }
+    }*/
+    if (execvp(command, args) == -1) {
+        perror("execvp");
+        exit(EXIT_FAILURE);  // Exit with failure status
+    }
 }
